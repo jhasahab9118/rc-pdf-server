@@ -57,5 +57,6 @@ app.post("/generate-rc", async (req, res) => {
 // Simple test route
 app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
 
+// ✅ Port setup (local + hosting platforms like Render/Railway)
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
