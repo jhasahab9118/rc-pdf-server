@@ -6,7 +6,7 @@ const app = express();
 app.use(cors()); // ✅ CORS enabled
 app.use(express.json());
 
-// Root route (optional, सिर्फ info दिखाने के लिए)
+// Root route
 app.get("/", (req, res) => {
   res.send("✅ RC PDF Generator Backend is running. Use POST /generate");
 });
@@ -35,6 +35,12 @@ app.post("/generate", async (req, res) => {
     res.send(pdfBuffer);
   } catch (err) {
     console.error("❌ PDF Generation Error:", err);
+    res.status(500).send("Error generating PDF");
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));    console.error("❌ PDF Generation Error:", err);
     res.status(500).send("Error generating PDF");
   }
 });
