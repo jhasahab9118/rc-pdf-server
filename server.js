@@ -1,9 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const puppeteer = require("puppeteer");
 
-const cors = require("cors");
-app.use(cors());
+const app = express();
+app.use(cors()); // ✅ CORS enabled
+app.use(express.json());
 
+// Root route (optional, सिर्फ info दिखाने के लिए)
+app.get("/", (req, res) => {
+  res.send("✅ RC PDF Generator Backend is running. Use POST /generate");
+});
+
+// PDF generate endpoint
 app.post("/generate", async (req, res) => {
   try {
     const { html } = req.body;
