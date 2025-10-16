@@ -56,6 +56,17 @@ app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));      
 });
 
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));      "Content-Type": "application/pdf",
+      "Content-Disposition": "inline; filename=certificate.pdf"
+    });
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error("❌ PDF Generation Error:", err);
+    res.status(500).send("Error generating PDF: " + err.message);
+  }
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));    });
     res.send(pdfBuffer);
   } catch (err) {
