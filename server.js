@@ -33,8 +33,11 @@ app.post("/generate-rc", async (req, res) => {
     const filled = fillTemplate(html, details);
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath()
     });
+
     const page = await browser.newPage();
     await page.setContent(filled, { waitUntil: "networkidle0" });
 
@@ -57,6 +60,6 @@ app.post("/generate-rc", async (req, res) => {
 // Simple test route
 app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
 
-// ✅ Port setup (local + hosting platforms like Render/Railway)
+// ✅ Port setup
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
