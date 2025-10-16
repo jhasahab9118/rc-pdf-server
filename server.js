@@ -3,7 +3,7 @@ const cors = require("cors");
 const puppeteer = require("puppeteer");
 
 const app = express();
-app.use(cors()); // ✅ CORS enabled
+app.use(cors());
 app.use(express.json());
 
 // Root route
@@ -35,12 +35,6 @@ app.post("/generate", async (req, res) => {
     res.send(pdfBuffer);
   } catch (err) {
     console.error("❌ PDF Generation Error:", err);
-    res.status(500).send("Error generating PDF");
-  }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));    console.error("❌ PDF Generation Error:", err);
     res.status(500).send("Error generating PDF");
   }
 });
