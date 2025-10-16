@@ -1,40 +1,44 @@
-import express from "express";
-import cors from "cors";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import puppeteer from "puppeteer";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require("express");
+const puppeteer = require("puppeteer");
 
 const app = express();
-app.use(cors());
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json());
 
-// Helper: replace placeholders {{FieldName}} with actual values
-function fillTemplate(html, data) {
-  let out = html;
-  for (const [key, val] of Object.entries(data)) {
-    out = out.replace(new RegExp(`\\{\\{${key}\\}\\}`, "g"), val ?? "");
-  }
-  return out.replace(/\{\{[A-Za-z0-9_]+\}\}/g, "");
-}
-
-// API route to generate PDF
-app.post("/generate-rc", async (req, res) => {
+// PDF Generate Endpoint
+app.post("/generate", async (req, res) => {
   try {
-    const details = req.body;
-    const tplPath = path.join(__dirname, "rc_template.html");
-    const html = fs.readFileSync(tplPath, "utf8");
-    const filled = fillTemplate(html, details);
+    const { html } = req.body;
+    if (!html) {
+      return res.status(400).send("Missing HTML content");
+    }
 
     const browser = await puppeteer.launch({
-      headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome"
+      headless: "new"
     });
 
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: "networkidle0" });
+
+    const pdfBuffer = await page.pdf({ format: "A4" });
+    await browser.close();
+
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": "inline; filename=certificate.pdf"
+    });
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error("❌ PDF Generation Error:", err);
+    res.status(500).send("Error generating PDF");
+  }
+});
+
+// Railway Port Binding
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
     const page = await browser.newPage();
     await page.setContent(filled, { waitUntil: "networkidle0" });
 
