@@ -6,10 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root route
 app.get("/", (req, res) => {
   res.send("✅ RC PDF Generator Backend is running. Use POST /generate");
 });
 
+// PDF generate endpoint
 app.post("/generate", async (req, res) => {
   try {
     const { html } = req.body;
@@ -35,6 +37,15 @@ app.post("/generate", async (req, res) => {
       "Content-Type": "application/pdf",
       "Content-Disposition": "inline; filename=certificate.pdf"
     });
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error("❌ PDF Generation Error:", err);
+    res.status(500).send("Error generating PDF: " + err.message);
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));    });
     res.send(pdfBuffer);
   } catch (err) {
     console.error("❌ PDF Generation Error:", err);
