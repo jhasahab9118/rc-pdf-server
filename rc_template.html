@@ -1,126 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Form 23 RC Certificate</title>
+  <meta charset="utf-8">
+  <title>RC Certificate</title>
   <style>
-    @page { size: A4; margin: 18mm; }
-    body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000; }
-    h1, h2, h3 { margin: 0; }
-    .center { text-align: center; }
-    .section { margin-top: 10px; }
-    .label { font-weight: bold; }
-    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    th, td { border: 1px solid #000; padding: 6px; vertical-align: top; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .right { text-align: right; }
-    .signature { margin-top: 30px; text-align: right; }
-    .small { font-size: 11px; }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    td { border: 1px solid #000; padding: 8px; }
   </style>
 </head>
 <body>
-  <div class="center">
-    <h3>{{HeaderTitle}}</h3>
-  </div>
-
-  <div class="section">
-    <div class="two-col">
-      <div><span class="label">Registration No:</span> {{RegistrationNo}}</div>
-      <div><span class="label">Description of Vehicle:</span> {{DescriptionOfVehicle}}</div>
-    </div>
-    <div class="two-col">
-      <div><span class="label">Dealer's Name & Address:</span> {{DealerNameAddress}}</div>
-      <div><span class="label">Purpose For Printing RC:</span> {{PurposeForPrinting}}</div>
-    </div>
-    <div class="two-col">
-      <div><span class="label">Owner Name:</span> {{OwnerName}}</div>
-      <div><span class="label">{{RelationLabel}}:</span> {{RelationName}}</div>
-    </div>
-    <div class="two-col">
-      <div><span class="label">Full Address (Permanent):</span> {{PermanentAddress}}</div>
-      <div><span class="label">Full Address (Temporary):</span> {{TemporaryAddress}}</div>
-    </div>
-    <div><span class="label">Registration Date:</span> {{RegistrationDate}}</div>
-  </div>
-
-  <table class="section">
-    <tr>
-      <th>Fitness UpTo</th><td>{{FitnessUpto}}</td>
-      <th>Tax Upto</th><td>{{TaxUpto}}</td>
-    </tr>
-    <tr>
-      <th>Owner Serial No</th><td>{{OwnerSerialNo}}</td>
-      <th></th><td></td>
-    </tr>
+  <h1>Registration Certificate</h1>
+  <table>
+    <tr><td>Registration No</td><td>{{RegistrationNo}}</td></tr>
+    <tr><td>Owner Name</td><td>{{OwnerName}}</td></tr>
+    <tr><td>Chassis No</td><td>{{ChassisNo}}</td></tr>
+    <tr><td>Engine No</td><td>{{EngineNo}}</td></tr>
+    <tr><td>Fuel</td><td>{{Fuel}}</td></tr>
+    <tr><td>Colour</td><td>{{Colour}}</td></tr>
   </table>
-
-  <table class="section">
-    <tr>
-      <th>Class of Vehicle</th><td>{{ClassOfVehicle}}</td>
-      <th>Link Vehicle No</th><td>{{LinkVehicleNo}}</td>
-    </tr>
-    <tr>
-      <th>Ownership</th><td>{{Ownership}}</td>
-      <th>Norms</th><td>{{Norms}}</td>
-    </tr>
-    <tr>
-      <th>Maker's Name</th><td>{{MakersName}}</td>
-      <th></th><td></td>
-    </tr>
-    <tr>
-      <th>Front HSRP No</th><td>{{FrontHSRPNo}}</td>
-      <th>Rear HSRP No</th><td>{{RearHSRPNo}}</td>
-    </tr>
-    <tr>
-      <th>Type of Body</th><td>{{TypeOfBody}}</td>
-      <th>Month/Year of Manuf.</th><td>{{MonthYearOfManufacture}}</td>
-    </tr>
-    <tr>
-      <th>No of Cylinders</th><td>{{NoOfCylinders}}</td>
-      <th>Chassis No</th><td>{{ChassisNo}}</td>
-    </tr>
-    <tr>
-      <th>Engine No</th><td>{{EngineNo}}</td>
-      <th>Fuel</th><td>{{Fuel}}</td>
-    </tr>
-    <tr>
-      <th>Horse Power (BHP)</th><td>{{HorsePowerBHP}}</td>
-      <th>Cubic Capacity</th><td>{{CubicCapacity}}</td>
-    </tr>
-    <tr>
-      <th>Maker's Classification</th><td>{{MakersClassification}}</td>
-      <th>Wheel base</th><td>{{WheelBase}}</td>
-    </tr>
-    <tr>
-      <th>Seating Cap (in all)</th><td>{{SeatingCapacity}}</td>
-      <th>Standing Cap</th><td>{{StandingCapacity}}</td>
-    </tr>
-    <tr>
-      <th>Sleepar Cap</th><td>{{SleeperCapacity}}</td>
-      <th>Unladen Wt (kgs)</th><td>{{UnladenWeightKg}}</td>
-    </tr>
-    <tr>
-      <th>Colour</th><td>{{Colour}}</td>
-      <th>Laden/GV Wt (kgs)</th><td>{{LadenGVWeightKg}}</td>
-    </tr>
-    <tr>
-      <th>Other Criteria</th><td>{{OtherCriteria}}</td>
-      <th>AC Fitted</th><td>{{ACFitted}}</td>
-    </tr>
-    <tr>
-      <th>Vehicle Purchase As</th><td>{{VehiclePurchaseAs}}</td>
-      <th></th><td></td>
-    </tr>
-  </table>
-
-  <div class="section small">
-    <span class="label">{{HypothecationLabel}}</span>
-    {{HypothecationBank}} {{HypothecationAddress}} w.e.f {{HypothecationWEF}}
-  </div>
-
-  <table class="section">
-    <tr>
-      <th>Purchase dt</th><td>{{PurchaseDate}}</td>
-      <th>Sale Amt</th><td>{{SaleAmount}}</td>
-    </tr>
-    <tr>
+</body>
+</html>
