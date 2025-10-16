@@ -32,7 +32,7 @@ app.post("/generate-rc", async (req, res) => {
     const browser = await puppeteer.launch({
       headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath()
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome"
     });
 
     const page = await browser.newPage();
@@ -59,53 +59,4 @@ app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
 
 // ✅ Port setup
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));    const page = await browser.newPage();
-    await page.setContent(filled, { waitUntil: "networkidle0" });
-
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true
-    });
-
-    await browser.close();
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", "attachment; filename=RC_Certificate.pdf");
-    return res.status(200).send(pdfBuffer);
-  } catch (e) {
-    console.error("PDF generation error:", e);
-    return res.status(500).json({ error: "PDF generation failed" });
-  }
-});
-
-app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath()
-    });
-
-    const page = await browser.newPage();
-    await page.setContent(filled, { waitUntil: "networkidle0" });
-
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true,
-      margin: { top: "18mm", right: "18mm", bottom: "18mm", left: "18mm" }
-    });
-
-    await browser.close();
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", "attachment; filename=RC_Certificate.pdf");
-    return res.status(200).send(pdfBuffer);
-  } catch (e) {
-    console.error(e);
-    return res.status(500).json({ error: "PDF generation failed" });
-  }
-});
-
-// Simple test route
-app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
-
-// ✅ Port setup
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
