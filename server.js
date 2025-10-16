@@ -59,4 +59,4 @@ app.get("/", (_req, res) => res.send("RC PDF Generator API OK"));
 
 // ✅ Port setup
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
