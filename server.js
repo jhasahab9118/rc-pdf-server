@@ -1,8 +1,8 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
 
-const app = express();
-app.use(express.json());
+const cors = require("cors");
+app.use(cors());
 
 app.post("/generate", async (req, res) => {
   try {
