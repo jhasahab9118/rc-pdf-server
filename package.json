@@ -1,13 +1,13 @@
 {
-  "name": "rc-pdf-backend",
+  "name": "rc-pdf-server",
   "version": "1.0.0",
-  "description": "RC Certificate PDF Generator Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-  "express": "^4.18.2",
-  "puppeteer": "^21.3.8",
-  "cors": "^2.8.5"
+    "express": "^4.18.2",
+    "puppeteer": "^21.3.8",
+    "cors": "^2.8.5"
   }
+}
